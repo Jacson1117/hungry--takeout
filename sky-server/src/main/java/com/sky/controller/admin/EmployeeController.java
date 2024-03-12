@@ -97,7 +97,7 @@ public class EmployeeController {
      */
     @GetMapping("/page")
     @ApiOperation("员工分页查询")
-    public Result page(@RequestParam(defaultValue = "1") Integer page,
+    public Result<PageResult> page(@RequestParam(defaultValue = "1") Integer page,
                                @RequestParam(defaultValue = "10")Integer pageSize,
                                String name){
         log.info("分页查询，参数：{},{},{}",page, pageSize,name);

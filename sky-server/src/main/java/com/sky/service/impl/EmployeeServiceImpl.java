@@ -1,5 +1,7 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.context.BaseContext;
@@ -91,10 +93,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public PageResult page(Integer page, Integer pageSize, String name) {
-        PageResult pageResult = new PageResult();
-         List<Employee> employeeList = employeeMapper.page(page,pageSize,name);
-         pageResult.setRecords(employeeList);
-        return null;
+
+        //开始分页查询
+        PageHelper.startPage(page,pageSize);
+        Page<Employee> page1 = employeeMapper.page(page,pageSize,name);
+        long total = page1.getTotal();
+        List<Employee> records = page1.getResult();
+        return new PageResult(total,records);
     }
 
 }
