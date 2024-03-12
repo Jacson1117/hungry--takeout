@@ -22,4 +22,8 @@ public interface EmployeeMapper {
             "values " +
             "(#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{createTime},#{updateTime},#{createUser},#{updateUser})")
     void insert(Employee employee);
+
+
+    @Select()
+    List<Employee> page(Integer page, Integer pageSize, String name);
 }

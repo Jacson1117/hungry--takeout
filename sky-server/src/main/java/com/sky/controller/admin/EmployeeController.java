@@ -66,7 +66,6 @@ public class EmployeeController {
 
     /**
      * 退出
-     *
      * @return
      */
     @PostMapping("/logout")
@@ -75,6 +74,11 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 新增员工
+     * @param employeeDTO
+     * @return
+     */
     @PostMapping
     @ApiOperation("新增员工")
     public Result<String> save(@RequestBody EmployeeDTO employeeDTO){
@@ -84,6 +88,13 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 员工分页查询
+     * @param page
+     * @param pageSize
+     * @param name
+     * @return
+     */
     @GetMapping("/page")
     @ApiOperation("员工分页查询")
     public Result page(@RequestParam(defaultValue = "1") Integer page,
